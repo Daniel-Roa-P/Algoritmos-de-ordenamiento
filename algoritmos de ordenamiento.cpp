@@ -4,6 +4,28 @@ using namespace std;
 
 int arreglo[]={3,5,7,4,1,8,9,5,2,9,11,5};
 
+void burbuja(int arreglo[],int cantidad){
+	
+	int i,j,aux;
+	
+	for(i=0;i<cantidad;i++){
+		
+		for(j=i+1;j<cantidad;j++){
+			
+			if(arreglo[j]<arreglo[i]){
+			
+			
+				aux=arreglo[j];
+				arreglo[j]=arreglo[i];
+				arreglo[i]=aux;
+				
+			}
+		}		
+		
+	}
+	
+}
+
 void seleccion(int arreglo[],int cantidad){
 
 	int i,j,menor,temp;
@@ -62,8 +84,9 @@ int main(){
 	
 	cout<<endl;
 	
-	/*seleccion(arreglo,12);*/
-	insercion(arreglo,12);
+	/*seleccion(arreglo,12);
+	insercion(arreglo,12);*/
+	burbuja(arreglo,12);
 	
 	for(int k = 0 ; k<12 ;k++){
 			
