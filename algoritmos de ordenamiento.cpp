@@ -1,11 +1,15 @@
 #include <iostream>
-#include <chrono> 
+#include <windows.h>
+#include <time.h>
+
+#define BILLION  1000000000.0;
 
 using namespace std;
-using namespace std::chrono;
 
 int* arreglo;
 int n, caso, opcion;
+
+struct timespec start, end;
 
 void mejor() {
 
@@ -140,42 +144,47 @@ int main() {
 
 		if (opcion == 1) {
 
-			auto inicio = std::chrono::high_resolution_clock::now();
+			
+			clock_gettime(CLOCK_REALTIME, &start);
 
 			seleccion(arreglo, n);
+		
+			clock_gettime(CLOCK_REALTIME, &end);
+		
+			double time_spent = (end.tv_sec - start.tv_sec) +
+						(end.tv_nsec - start.tv_nsec) / BILLION;
 
-			auto final = std::chrono::high_resolution_clock::now();
-
-			auto dif = final - inicio;
-
-			cout << "El algoritmo de seleccion tardo: " << chrono::duration <double, nano>(dif).count() << " Nano segundos" << endl;
-
+			printf("Seleccion tardo %f seconds", time_spent);
+			
 		}
-		else if (opcion == 2) {
-
-			auto inicio = std::chrono::high_resolution_clock::now();
+		else if (opcion == 2) {			
+			
+			clock_gettime(CLOCK_REALTIME, &start);
 
 			insercion(arreglo, n);
+		
+			clock_gettime(CLOCK_REALTIME, &end);
+		
+			double time_spent = (end.tv_sec - start.tv_sec) +
+						(end.tv_nsec - start.tv_nsec) / BILLION;
 
-			auto final = std::chrono::high_resolution_clock::now();
+			printf("Insercion tardo %f seconds", time_spent);
 
-			auto dif = final - inicio;
-
-			cout << "El algoritmo de insercion tardo: " << chrono::duration <double, nano>(dif).count() << " Nano segundos" << endl;
 
 		}
 		else if (opcion == 3) {
-
-			auto inicio = std::chrono::high_resolution_clock::now();
+			
+			clock_gettime(CLOCK_REALTIME, &start);
 
 			burbuja(arreglo, n);
+		
+			clock_gettime(CLOCK_REALTIME, &end);
+		
+			double time_spent = (end.tv_sec - start.tv_sec) +
+						(end.tv_nsec - start.tv_nsec) / BILLION;
 
-			auto final = std::chrono::high_resolution_clock::now();
-
-			auto dif = final - inicio;
-
-			cout << "El algoritmo de burbuja tardo: " << chrono::duration <double, nano>(dif).count() << " Nano segundos" << endl;
-
+			printf("Burbuja tardo %f seconds", time_spent);
+			
 		}
 
 		cout << endl;
